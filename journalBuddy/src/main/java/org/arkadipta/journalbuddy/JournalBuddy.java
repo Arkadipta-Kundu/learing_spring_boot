@@ -13,7 +13,10 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 public class JournalBuddy {
 
     public static void main(String[] args) {
-
+        // Set SSL properties
+//        System.setProperty("javax.net.ssl.trustStore", "/path/to/truststore.jks");
+//        System.setProperty("javax.net.ssl.trustStorePassword", "your-truststore-password");
+//
         SpringApplication.run(JournalBuddy.class, args);
     }
 
@@ -21,5 +24,4 @@ public class JournalBuddy {
     public PlatformTransactionManager platformTransactionManager(MongoDatabaseFactory mongoDatabaseFactory){
         return new MongoTransactionManager(mongoDatabaseFactory);
     }
-
 }

@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Document(collection = "users")
-@Data // (is equivalent of @Getter @Setter @ToString and 2 more)
+@Data
 @NoArgsConstructor
 public class User {
 
@@ -25,6 +25,7 @@ public class User {
     private String userName;
     @NonNull
     private String password;
+    private List<String> roles ;
     @DBRef
     private List<JournalEntry> journalEntries = new ArrayList<>();
 }

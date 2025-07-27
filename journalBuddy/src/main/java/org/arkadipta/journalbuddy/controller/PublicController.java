@@ -15,8 +15,8 @@ import java.util.List;
 
 @Slf4j
 @RestController
-@RequestMapping("/user")
-public class UserController {
+@RequestMapping("/public")
+public class PublicController {
 
     @Autowired
     private UserService userService;
@@ -24,17 +24,14 @@ public class UserController {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-
-    @PutMapping
-    public ResponseEntity<?> updateUser(@RequestBody User user){
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String userName = authentication.getName();
-        User userInDb = userService.findByUserName(userName);
-        if(userInDb != null){
-            userInDb.setUserName(user.getUserName());
-            userInDb.setPassword(passwordEncoder.encode(user.getPassword()));
-            userService.saveEntry(userInDb);
-        }
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    @GetMapping("/health")
+    public String health(){
+        return "Healthy !";
     }
+
+    @PostMapping("/create-user")
+    public void createUser(@RequestBody User user){
+        userService.saveNewUser(user);
+    }
+
 }
