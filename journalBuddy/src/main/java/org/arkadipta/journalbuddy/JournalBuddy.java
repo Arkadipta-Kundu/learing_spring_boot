@@ -11,9 +11,6 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @SpringBootApplication
 @EnableTransactionManagement
 public class JournalBuddy {
-    static {
-        new EnvLoader(); // Load .env before Spring starts
-    }
 
     public static void main(String[] args) {
 
